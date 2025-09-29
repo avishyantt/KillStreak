@@ -11,11 +11,6 @@
     <name>KillStreak</name>
 
     <repositories>
-        <!-- JitPack repository to fetch PlaceholderAPI -->
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
         <!-- Spigot snapshots repo -->
         <repository>
             <id>spigot-repo</id>
@@ -32,11 +27,11 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- PlaceholderAPI fixed version -->
+        <!-- PlaceholderAPI is provided at runtime by the server -->
         <dependency>
-            <groupId>com.github.clip</groupId>
-            <artifactId>PlaceholderAPI</artifactId>
-            <version>2.11.2</version> <!-- changed from 2.11.3 -->
+            <groupId>me.clip</groupId>
+            <artifactId>placeholderapi</artifactId>
+            <version>2.11.3</version>
             <scope>provided</scope>
         </dependency>
 
