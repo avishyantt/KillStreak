@@ -1,0 +1,6 @@
+name: KillStreak
+version: 1.0
+main: com.example.killstreak.KillStreakPlugin
+api-version: 1.20
+author: You
+depend: [PlaceholderAPI]
