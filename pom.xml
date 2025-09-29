@@ -6,14 +6,11 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example</groupId>
     <artifactId>KillStreak</artifactId>
-
-    <!-- Version can be overridden via GitHub Actions or Maven -Dversion -->
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>KillStreak</name>
     <description>Kill streak plugin with PlaceholderAPI support</description>
-    <url>http://example.com</url>
 
     <properties>
         <java.version>17</java.version>
@@ -21,6 +18,18 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
     </properties>
+
+    <!-- Repositories for Spigot and PlaceholderAPI -->
+    <repositories>
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
+        <repository>
+            <id>clip-repo</id>
+            <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+        </repository>
+    </repositories>
 
     <dependencies>
         <!-- Spigot API -->
@@ -53,7 +62,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Shade plugin to package as single JAR if needed -->
+            <!-- Shade plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -63,9 +72,6 @@
                         <phase>package</phase>
                         <goals><goal>shade</goal></goals>
                         <configuration>
-                            <relocations>
-                                <!-- optional: relocate packages to avoid conflicts -->
-                            </relocations>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <mainClass>com.example.killstreak.KillStreakPlugin</mainClass>
@@ -74,13 +80,6 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-
-            <!-- Versions plugin for CI version replacement -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>versions-maven-plugin</artifactId>
-                <version>2.15.0</version>
             </plugin>
         </plugins>
     </build>
