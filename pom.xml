@@ -1,16 +1,16 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
-                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>com.example</groupId>
     <artifactId>KillStreak</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>KillStreak</name>
-    <description>Kill streak plugin with PlaceholderAPI support</description>
+    <description>A Minecraft KillStreak plugin</description>
 
     <properties>
         <java.version>17</java.version>
@@ -19,15 +19,17 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
     </properties>
 
-    <!-- Repositories -->
     <repositories>
+        <!-- Spigot snapshots repository -->
         <repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
+
+        <!-- PlaceholderAPI repository -->
         <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
+            <id>extended-clip</id>
+            <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
     </repositories>
 
@@ -40,10 +42,10 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- PlaceholderAPI via JitPack -->
+        <!-- PlaceholderAPI -->
         <dependency>
-            <groupId>com.github.clip</groupId>
-            <artifactId>PlaceholderAPI</artifactId>
+            <groupId>me.clip</groupId>
+            <artifactId>placeholderapi</artifactId>
             <version>2.11.3</version>
             <scope>provided</scope>
         </dependency>
@@ -62,7 +64,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Shade plugin -->
+            <!-- Shade plugin to create a fat jar (optional if you need dependencies inside) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -70,13 +72,11 @@
                 <executions>
                     <execution>
                         <phase>package</phase>
-                        <goals><goal>shade</goal></goals>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
                         <configuration>
-                            <transformers>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.example.killstreak.KillStreakPlugin</mainClass>
-                                </transformer>
-                            </transformers>
+                            <minimizeJar>false</minimizeJar>
                         </configuration>
                     </execution>
                 </executions>
